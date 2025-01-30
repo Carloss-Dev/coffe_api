@@ -4,25 +4,34 @@ import { UserService } from "../service/user.service";
 export class UserController {
   async getAll(__: Request, response: Response) {
     try {
-      const users = new UserService().getAll();
+      const users = await new UserService().getAll();
 
       response.status(200).json(users);
     } catch (error) {
-      response.status(500).json("Erro interno no servidor");
-      console.error(error);
+      response.status(500).json({ error: "Erro interno no servidor" });
+      console.error("Erro no controller ao buscar usuário", error);
     }
   }
 
   async postUser(request: Request, response: Response) {
     try {
-      const body: PostUserInterface = request.body;
+      const body: PostUserBody = request.body;
 
-      console.log(body);
-      response.status(500).json("Usuário cadastrado com sucesso!!");
+      const user = await new UserService().postUser(body);
+
+      console.log("controller ", user);
+
+      response
+        .status(200)
+        .json({ message: "Usuário cadastrador com sucesso!!" });
     } catch (error) {
-      response.status(500).json("Erro interno no servidor");
-      console.error(error);
-      throw error;
+      if (error instanceof Error) {
+        if (error.message === "E-mail já cadastrado") {
+          response.status(400).json({ error: "E-mail já cadastrado" });
+        }
+      }
+      response.status(500).json({ error: "Erro interno no servidor" });
+      console.error("Erro no controller ao criar usuário", error);
     }
   }
 }

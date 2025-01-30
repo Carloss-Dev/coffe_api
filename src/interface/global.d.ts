@@ -1,4 +1,4 @@
-declare interface PostUserInterface {
+declare interface PostUserBody {
   name: string;
   email: string;
   password: string;

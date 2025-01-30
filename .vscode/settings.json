@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+  "dist": true,
+  "prisma": true,
+  "node_modules": true,
+  ".gitignore": true,
+  "yarn.lock": true,
+  "tsconfig.json": true,
+  "biome.json": true,
+  ".env.example": true,
+  ".vscode": true
+  }
+}
