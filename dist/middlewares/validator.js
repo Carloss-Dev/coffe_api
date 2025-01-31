@@ -9,18 +9,19 @@ class Validator {
             const requireFields = ["name", "password", "email", "image_profile"];
             const invalidFields = (0, fieldValidator_1.fieldValidator)(requireFields, body);
             if (invalidFields && invalidFields?.length > 0) {
-                response
-                    .status(400)
-                    .json({
+                console.error(`Middleware validator: Campo(s) inválido(s) ${invalidFields.join(", ")}`);
+                response.status(400).json({
                     message: `Campo(s) inválido(s): ${invalidFields.join(", ")}`,
                 });
                 return;
             }
             if (!invalidFields) {
+                console.error("Middleware validator: Erro no corpo da requisição");
                 response.status(400).json({ message: "Erro no corpo da requisição" });
                 return;
             }
             if (!body.email || !body.name || !body.password) {
+                console.error("Middleware validator: Os campos: e-mail, name e password são obrigatórios. Body: ", body);
                 response.status(400).json({
                     message: "Os campos: e-mail, name e password são obrigatórios",
                 });

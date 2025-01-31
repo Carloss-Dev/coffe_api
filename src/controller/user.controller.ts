@@ -9,7 +9,7 @@ export class UserController {
       response.status(200).json(users);
     } catch (error) {
       response.status(500).json({ error: "Erro interno no servidor" });
-      console.error("Erro no controller ao buscar usuário", error);
+      console.error("Erro no controller: Buscar usuário", error);
     }
   }
 
@@ -17,23 +17,22 @@ export class UserController {
     try {
       const body: PostUserBody = request.body;
 
-      const user = await new UserService().postUser(body);
-
-      console.log("controller ", user);
+      await new UserService().postUser(body);
 
       response
         .status(200)
-        .json({ message: "Usuário cadastrador com sucesso!!" });
+        .json({ message: "Usuário cadastrado com sucesso!!" });
     } catch (error) {
       if (error instanceof Error) {
         if (error.message === "E-mail já cadastrado") {
-          response.status(400).json({ error: "E-mail já cadastrado" });
+          console.error("Erro no controller: E-mail já cadastrado");
 
+          response.status(400).json({ error: "E-mail já cadastrado" });
           return;
         }
       }
       response.status(500).json({ error: "Erro interno no servidor" });
-      console.error("Erro no controller ao criar usuário", error);
+      console.error("Erro no controller: Criar usuário", error);
     }
   }
 }

@@ -6,7 +6,7 @@
     "dist": true,
     "node_modules": true,
     "prisma": true,
-    "tsconfig.json": false,
+    "tsconfig.json": true,
     "yarn.lock": true,
     ".vscode": true
   }
