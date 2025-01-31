@@ -26,6 +26,7 @@ class UserController {
             if (error instanceof Error) {
                 if (error.message === "E-mail já cadastrado") {
                     response.status(400).json({ error: "E-mail já cadastrado" });
+                    return;
                 }
             }
             response.status(500).json({ error: "Erro interno no servidor" });

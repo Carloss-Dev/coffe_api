@@ -1,13 +1,13 @@
 {
   "files.exclude": {
-  "dist": true,
-  "prisma": true,
-  "node_modules": true,
-  ".gitignore": true,
-  "yarn.lock": true,
-  "tsconfig.json": true,
-  "biome.json": true,
-  ".env.example": true,
-  ".vscode": true
+    ".env.example": true,
+    ".gitignore": true,
+    "biome.json": true,
+    "dist": true,
+    "node_modules": true,
+    "prisma": true,
+    "tsconfig.json": false,
+    "yarn.lock": true,
+    ".vscode": true
   }
 }
